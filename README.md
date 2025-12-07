@@ -24,6 +24,43 @@ This project allows **ad-free, secure, and fast DNS resolution** for all your de
 
 ---
 
+
+## 🏗 Network Architecture 
+```mermaid
+%% Home DNS Infrastructure with Proxmox, AdGuard Home, and Unbound
+graph TD
+    subgraph LAN_Devices[Devices]
+        A1[PC / Laptop]
+        A2[Smartphone / Tablet]
+        A3[Smart TV / IoT]
+    end
+
+    subgraph Router[Router 192.168.1.1]
+        R1
+    end
+
+    subgraph AdGuardVM[AdGuard Home VM 192.168.1.250]
+        AG[AdGuard Home<br>Port 53 DNS<br>Port 3000 Web UI]
+    end
+
+    subgraph UnboundVM[Unbound VM 192.168.1.254]
+        UB[Unbound<br>Port 5335 DNS]
+    end
+
+    subgraph RootDNS[Root DNS Servers]
+        ROOT
+    end
+
+    %% Connections
+    A1 -->|DNS Queries| R1
+    A2 -->|DNS Queries| R1
+    A3 -->|DNS Queries| R1
+    R1 -->|DNS Forwarding| AG
+    AG -->|Filtered DNS| UB
+    UB -->|Recursive Resolution| ROOT
+```
+
+
 ## 🏗 Architecture Diagram
 ![Architecture diagram](screenshots\diagram.png)
 ![Architecture diagram](screenshots\diagram1.png)
