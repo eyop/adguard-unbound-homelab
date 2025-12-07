@@ -62,8 +62,8 @@ graph TD
 
 
 ## 🏗 Architecture Diagram
-![Architecture diagram](screenshots/diagram.png)
-![Architecture diagram](screenshots/diagram1.png)
+#![Architecture diagram](screenshots/diagram.png)
+
 Figure: Network architecture — Devices → Router (DNS) → AdGuard Home → Unbound → Root DNS Servers.
 
 
